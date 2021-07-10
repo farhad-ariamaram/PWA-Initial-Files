@@ -3,7 +3,7 @@
 var installPwaButton = document.querySelector('#installPwaButton');
 var deferredPrompt;
 
-fab.addEventListener('click', function () {
+installPwaButton.addEventListener('click', function () {
   if (deferredPrompt) {
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then(function (choice) {
