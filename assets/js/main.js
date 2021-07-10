@@ -1,3 +1,31 @@
+//install with button section [START]
+var installPwaButton = document.querySelector('#installPwaButton');
+var deferredPrompt;
+
+fab.addEventListener('click', function () {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function (choice) {
+      console.log(choice);
+      if (choice.outcome === 'dismissed') {
+        console.log('installation was cancelled');
+      } else {
+        console.log('User Added To Home Screen');
+      }
+    });
+    deferredPrompt = null;
+  }
+});
+
+window.addEventListener('beforeinstallprompt', function (event) {
+  console.log('beforeinstallprompt run .');
+  event.preventDefault();
+  deferredPrompt = event;
+  return false;
+});
+//install with button section [END]
+
+//Register SW if browser support [START]
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker
@@ -14,3 +42,4 @@ if ('serviceWorker' in navigator) {
       })
   });
 }
+//Register SW if browser support [END]
