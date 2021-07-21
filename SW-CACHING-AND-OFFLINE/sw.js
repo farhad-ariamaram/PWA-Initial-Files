@@ -14,7 +14,7 @@ const STATIC_ASSESTS = [
 ];
 
 
-self.addEventListener('install', (event) => {
+/*self.addEventListener('install', (event) => {
     console.log('[SW] installing Service Worker ...');
     event.waitUntil(
 
@@ -28,6 +28,15 @@ self.addEventListener('install', (event) => {
                 console.log('cache error');
             })
     );
+});*/
+
+self.addEventListener('install', (event) => {
+    console.log('[SW] installing Service Worker ...');
+    event.waitUntil(
+        caches.open(STATIC_CACHE_VERSION).then(function (cache) {
+            return cache.addAll(STATIC_ASSESTS);
+        })
+    )
 });
 
 
