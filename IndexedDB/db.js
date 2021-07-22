@@ -100,14 +100,14 @@ db.getAll()
 
 
 //Delete
-db.deleteNote(1)
+db.deleteById(1)
       .then(function (){
         alert('Note deleted');
       });
       
 
 //GetById
-db.getNote(1)
+db.getById(1)
       .then(function (data){
         titleInput.value = data.title;
         noteInput.value = data.note;
